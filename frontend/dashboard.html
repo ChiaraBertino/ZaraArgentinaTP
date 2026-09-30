@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zara Argentina | Tablero de ventas</title>
+<link rel="stylesheet" href="css/dashboard.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>ZARA <span>Argentina</span> · Tablero de ventas</h1>
+    <div class="user-box">
+      <span id="usuario-actual"></span>
+      <button id="btn-logout">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- KPIs -->
+    <section class="kpis" id="kpis">
+      <div class="kpi-card">
+        <span class="kpi-valor" id="kpi-facturacion">-</span>
+        <span class="kpi-label">Facturación total</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-valor" id="kpi-ventas">-</span>
+        <span class="kpi-label">Ventas registradas</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-valor" id="kpi-tiendas">-</span>
+        <span class="kpi-label">Tiendas</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-valor" id="kpi-provincias">-</span>
+        <span class="kpi-label">Provincias</span>
+      </div>
+    </section>
+
+    <div class="grid-2">
+      <!-- Drill down -->
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Ventas por ubicación</h2>
+            <nav class="breadcrumb" id="breadcrumb">
+              <span class="crumb activo" data-nivel="1">Argentina (por provincia)</span>
+            </nav>
+          </div>
+          <button id="btn-drillup" class="btn-secundario" disabled>⬅ Volver</button>
+        </div>
+
+        <canvas id="chart-drilldown" height="260"></canvas>
+
+        <table class="tabla" id="tabla-drilldown">
+          <thead id="tabla-drilldown-head"></thead>
+          <tbody id="tabla-drilldown-body"></tbody>
+        </table>
+        <p class="hint">Hacé clic en una barra o en una fila para bajar de nivel (Drill Down).</p>
+      </section>
+
+      <!-- Semaforización -->
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Estado de tiendas según facturación</h2>
+        </div>
+        <p class="hint">
+          Comparación de la facturación de cada tienda contra el promedio general de todas
+          las tiendas de la cadena.
+          <br />
+          <span class="leyenda"><span class="dot verde"></span> ≥ 100% del promedio</span>
+          <span class="leyenda"><span class="dot amarillo"></span> entre 70% y 100%</span>
+          <span class="leyenda"><span class="dot rojo"></span> &lt; 70% del promedio</span>
+        </p>
+        <div id="semaforo-lista" class="semaforo-lista"></div>
+      </section>
+    </div>
+
+  </main>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
